@@ -51,8 +51,10 @@ public class EmployeeController {
         Map<String, Object> claims = new HashMap<>();
         claims.put(JwtClaimsConstant.EMP_ID, employee.getId());
         String token = JwtUtil.createJWT(
+                //JWT参数值来源于配置文件application.yml
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
+                //三个参数：密钥、过期时间、载荷
                 claims);
 
         EmployeeLoginVO employeeLoginVO = EmployeeLoginVO.builder()
